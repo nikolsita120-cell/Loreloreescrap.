@@ -46,16 +46,16 @@
    .music-start { display:none; }
    .music-start.visible { display:inline-block; padding:7px 12px; }
    .hero p,.intro { color:var(--muted);font-size:1.1rem;max-width:650px; }.buttons { display:flex;gap:12px;flex-wrap:wrap;margin-top:26px; }
-   .button { display:inline-block;text-decoration:none;border:1px solid var(--pink);border-radius:999px;padding:10px 18px; cursor:pointer; }.primary { background:var(--pink);color:#210b20;font-weight:800; }
+   .button { display:inline-block;text-decoration:none;border:1px solid var(--pink);border-radius:999px;padding:10px 18px; }.primary { background:var(--pink);color:#210b20;font-weight:800; }
    .button { transition:transform.2s ease, box-shadow.2s ease; }
    .button:hover { transform:translateY(-3px); box-shadow:0 8px 18px #c9159144; }
    .button:active { transform:translateY(1px) scale(.97); }
     section { padding:68px 0; }.heading { margin-bottom:26px; }.heading p { color:var(--muted);margin:0; }
-   .catalog-search { width:min(330px,100%); margin:0; border:1px solid var(--line); border-radius:999px; padding:8px 14px; font:inherit; }
+   .catalog-search { width:min(330px,100%); margin:0; }
    .cart-wrap { position:relative; }
    .cart-button { border:1px solid var(--pink); border-radius:999px; padding:9px 14px; color:var(--ink); background:var(--card); font:inherit; cursor:pointer; white-space:nowrap; }
-   .cart-panel { position:absolute; right:0; top:50px; width:340px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; box-shadow:0 12px 30px #00000025; z-index:10; }
-   .cart-items { list-style:none; padding:0; margin:10px 0; max-height:320px; overflow:auto; }
+   .cart-panel { position:absolute; right:0; top:50px; width:340px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; box-shadow:0 12px 30px #0002; z-index:20; }
+   .cart-items { list-style:none; padding:0; margin:0; }
    .grid { display:grid;grid-template-columns:repeat(3,1fr);gap:18px; }.card { background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 10px 24px #663b8c1c; }
    .category-card { display:block; width:100%; text-align:left; cursor:pointer; color:var(--ink); background:linear-gradient(135deg,#ead8f8,#d4b9ed); transition:transform.2s,border-color.2s; }
    .category-card:hover { transform:translateY(-4px); border-color:var(--pink); }
@@ -84,13 +84,12 @@
    .services-list.card h3 { margin-bottom:8px; }
    .services-list.card p { margin:0; }
    .services-image { width:100%; max-height:150px; object-fit:contain; object-position:center; display:block; border:0; border-radius:0; box-shadow:none; background:transparent; padding:0; mix-blend-mode:multiply; }
-   .add-cart { margin-top:12px; border:1px solid var(--pink); background:#fff; color:var(--pink); border-radius:999px; padding:7px 14px; font:inherit; font-weight:800; cursor:pointer; }
-   .add-cart:hover { background:var(--pink); color:#fff; }
+   .add-cart{margin-top:10px;border:1px solid var(--pink);background:#fff;color:var(--pink);border-radius:999px;padding:7px 14px;font:inherit;font-weight:800;cursor:pointer}
     @media(max-width:720px) {.hero-grid,.contact-grid,.services-layout { grid-template-columns:1fr; }.logo { width:min(420px,100%); }.music-hint { margin-left:0; }.music-player { align-items:flex-start; flex-direction:column; }.music-player video { width:100%; }.grid,.product-grid { grid-template-columns:1fr; }.product { grid-template-columns:1fr; }.product img { height:190px; }.whatsapp-float { right:12px; bottom:12px; width:145px; } nav { flex-wrap:wrap;padding:12px 0; }.links { order:3;width:100%;margin:0; } }
   </style>
 </head>
 <body>
-<header><nav class="wrap"><a class="brand" href="#inicio">LORE<span>LOREE</span><b>SCRAP</b></a><label for="product-search" class="visually-hidden">Buscar producto</label><input class="product-search catalog-search" id="product-search" type="search" placeholder="Buscar producto..." autocomplete="off"><p id="search-status" style="font-size:.9rem; color:#c91591; font-weight:700; margin:8px 0 0 12px; min-height:20px; background:#fffaff; padding:4px 8px; border-radius:8px; display:inline-block;"></p><div class="cart-wrap"><button class="cart-button" id="cart-toggle" type="button" aria-expanded="false" aria-controls="cart-panel">🛒 Carrito <span class="cart-count" id="cart-count">0</span></button><div class="cart-panel" id="cart-panel" hidden><h3>Tu carrito</h3><p class="cart-empty" id="cart-empty">Todavía no has agregado productos.</p><ul class="cart-items" id="cart-items"></ul><button class="button primary" id="checkout-whatsapp" type="button" style="width:100%; margin-top:12px;">Pagar por WhatsApp</button></div></div><div class="links"><a href="#servicios">Servicios</a><a href="#catalogo">Catálogo</a><a href="#contacto">Contacto</a></div></nav></header> <main>
+<header><nav class="wrap"><a class="brand" href="#inicio">LORE<span>LOREE</span><b>SCRAP</b></a><label for="product-search" class="visually-hidden">Buscar producto</label><input class="product-search catalog-search" id="product-search" type="search" placeholder="Buscar producto..." autocomplete="off"><p id="search-status" style="font-size:.9rem; color:#c91591; font-weight:700; margin:8px 0 0 12px; min-height:20px; background:#fffaff; padding:4px 8px; border-radius:8px; display:inline-block;"></p><div class="cart-wrap"><button class="cart-button" id="cart-toggle" type="button" aria-expanded="false" aria-controls="cart-panel">🛒 Carrito <span class="cart-count" id="cart-count">0</span></button><div class="cart-panel" id="cart-panel" hidden><h3>Tu carrito</h3><p class="cart-empty" id="cart-empty">Todavía no has agregado productos.</p><ul class="cart-items" id="cart-items"></ul><button class="button primary" id="checkout-whatsapp" type="button" style="width:100%;margin-top:12px;">Pagar por WhatsApp</button></div></div><div class="links"><a href="#servicios">Servicios</a><a href="#catalogo">Catálogo</a><a href="#contacto">Contacto</a></div></nav></header> <main>
     <section class="hero" id="inicio"><span class="floating one" aria-hidden="true"></span><span class="floating two" aria-hidden="true"></span><span class="floating three" aria-hidden="true"></span><div class="wrap hero-grid"><div><div class="eyebrow">Papelería creativa · Bogotá</div><div><h1 class="hero-title" id="hero-title" role="button" tabindex="0" aria-label="Ideas que se vuelven recuerdos.">Ideas que se vuelven recuerdos.</h1><span class="music-hint"><img src="dedo.png" alt=""> ✦ Haz clic y escúchame ♫</span></div><p>Personalización, sublimación y estampados para crear productos únicos para ti, tu negocio y tus momentos especiales.</p><div class="buttons"><a class="button primary" href="#catalogo">Ver productos</a><a class="button" href="https://wa.me/573227689946?text=Hola%20LoreLoreeScrap%2C%20quiero%20una%20cotizaci%C3%B3n" target="_blank" rel="noopener">Cotizar por WhatsApp</a></div><div class="music-player"><span>♫ Música de ambiente</span><video id="music-video" controls autoplay loop playsinline title="Música de ambiente"><source src="cofe.mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video><button class="music-start" id="music-start" type="button">Activar música</button></div></div><img class="logo" src="productos.png" alt="Productos personalizados de LoreLoreeScrap"></div></section>
     <div class="section-divider" aria-hidden="true"><span>✦</span></div>
     <section id="servicios"><div class="wrap"><div class="heading"><div class="eyebrow">Lo hacemos especial</div><h2>Servicios para cada idea</h2><p class="intro">Cuéntanos qué imaginas y te ayudamos a convertirlo en un detalle hecho a tu medida.</p></div><div class="services-layout"><div class="video-box"><iframe class="tiktok-player" src="https://www.tiktok.com/player/v1/7673717573598465301" title="Video de LoreLoreeScrap en TikTok" loading="lazy" allow="fullscreen"></iframe><a class="video-link" href="https://www.tiktok.com/@agendas_loreloreescrap/video/7673717573598465301" target="_blank" rel="noopener noreferrer">Ver video completo en TikTok ↗</a></div><div class="services-list"><img class="services-image" src="logo-loreloreescrap.png" alt="Logo de LoreLoreeScrap"><article class="card"><h3>Personalización</h3><p>Diseños únicos para agendas, libretas, regalos y productos especiales.</p></article><article class="card"><h3>Sublimación</h3><p>Colores vibrantes en mugs, termos, caramañolas, vasos y mucho más.</p></article><article class="card"><h3>Estampados</h3><p>Haz realidad tu diseño en diferentes superficies y formatos.</p></article></div></div></div></section>
@@ -171,8 +170,6 @@
       categoryToggle.querySelector('.arrow').textContent = isOpen? '↓' : '↑';
       if (!isOpen) products.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-
-    // --- BUSCADOR ARREGLADO ---
     const normalizeText = (str) => str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const productSearch = document.querySelector('#product-search');
     const searchStatus = document.querySelector('#search-status');
@@ -204,27 +201,24 @@
         searchProducts(true);
       }
     });
-
-    // --- CARRITO CON BORRAR Y PAGAR POR WHATSAPP ---
     const cartToggle = document.querySelector('#cart-toggle');
     const cartPanel = document.querySelector('#cart-panel');
     const cartCount = document.querySelector('#cart-count');
     const cartItems = document.querySelector('#cart-items');
     const cartEmpty = document.querySelector('#cart-empty');
     let cart = JSON.parse(localStorage.getItem('loreloreescrap-cart') || '[]');
-
     const renderCart = () => {
       cartCount.textContent = cart.length;
       cartItems.innerHTML = '';
       cartEmpty.hidden = cart.length > 0;
       cart.forEach((item, index) => {
-        const listItem = document.createElement('li');
-        listItem.style.display = 'flex';
-        listItem.style.justifyContent = 'space-between';
-        listItem.style.alignItems = 'center';
-        listItem.style.gap = '10px';
-        listItem.style.marginBottom = '8px';
-        listItem.style.fontSize = '.85rem';
+        const li = document.createElement('li');
+        li.style.display = 'flex';
+        li.style.justifyContent = 'space-between';
+        li.style.alignItems = 'center';
+        li.style.gap = '10px';
+        li.style.marginBottom = '8px';
+        li.style.fontSize = '.85rem';
         const text = document.createElement('span');
         text.textContent = `${item.name} — ${item.price}`;
         const delBtn = document.createElement('button');
@@ -243,13 +237,12 @@
           cart.splice(index, 1);
           renderCart();
         });
-        listItem.appendChild(text);
-        listItem.appendChild(delBtn);
-        cartItems.appendChild(listItem);
+        li.appendChild(text);
+        li.appendChild(delBtn);
+        cartItems.appendChild(li);
       });
       localStorage.setItem('loreloreescrap-cart', JSON.stringify(cart));
     };
-
     productCards.forEach(card => {
       const button = document.createElement('button');
       button.className = 'add-cart';
@@ -266,28 +259,19 @@
       });
       card.querySelector('.product-body').appendChild(button);
     });
-
     cartToggle.addEventListener('click', () => {
       const isOpen = cartToggle.getAttribute('aria-expanded') === 'true';
       cartToggle.setAttribute('aria-expanded', String(!isOpen));
       cartPanel.hidden = isOpen;
     });
-
     const checkoutBtn = document.querySelector('#checkout-whatsapp');
     checkoutBtn.addEventListener('click', () => {
-      if (cart.length === 0) {
-        alert('Tu carrito está vacío');
-        return;
-      }
+      if (cart.length === 0) { alert('Tu carrito está vacío'); return; }
       let mensaje = 'Hola LoreLoreeScrap! 👋 Quiero comprar:%0A%0A';
-      cart.forEach((item, i) => {
-        mensaje += `${i+1}. ${item.name} - ${item.price}%0A`;
-      });
-      mensaje += `%0ATotal productos: ${cart.length}%0A%0AQuedo atenta!`;
-      const url = `https://wa.me/573227689946?text=${mensaje}`;
-      window.open(url, '_blank');
+      cart.forEach((item, i) => { mensaje += `${i+1}. ${item.name} - ${item.price}%0A`; });
+      mensaje += `%0ATotal productos: ${cart.length}`;
+      window.open(`https://wa.me/573227689946?text=${mensaje}`, '_blank');
     });
-
     renderCart();
   </script>
 </body>
