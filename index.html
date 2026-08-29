@@ -325,21 +325,107 @@ let titleIndex=0; const animateTitle=()=>{ titleIndex=(titleIndex+1)%titleMessag
 heroTitle.addEventListener('click', animateTitle);
 const categoryToggle = document.querySelector('#papeleria-toggle');
 const products = document.querySelector('#papeleria-products');
-categoryToggle.addEventListener('click', () => { const isOpen = categoryToggle.getAttribute('aria-expanded') === 'true'; categoryToggle.setAttribute('aria-expanded', String(!isOpen)); products.hidden = isOpen; categoryToggle.querySelector('.arrow').textContent = isOpen? '↓' : '↑'; if(!isOpen) products.scrollIntoView({ behavior:'smooth', block:'start' }); });
+categoryToggle.addEventListener('click', () => { 
+  const isOpen = categoryToggle.getAttribute('aria-expanded') === 'true'; 
+  categoryToggle.setAttribute('aria-expanded', String(!isOpen)); 
+  products.hidden = isOpen; 
+  const arrow = categoryToggle.querySelector('.arrow');
+  if(arrow) arrow.textContent = isOpen? '↓' : '↑'; 
+  if(!isOpen) products.scrollIntoView({ behavior:'smooth', block:'start' }); 
+});
+
 const normalizeText = (str) => str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const productSearch = document.querySelector('#product-search');
 const searchStatus = document.querySelector('#search-status');
-const productCards = Array.from(document.querySelectorAll('.product'));
-const searchProducts = (shouldScroll = false) => { const raw = productSearch.value.trim(); const query = normalizeText(raw); if (query) { products.hidden = false; categoryToggle.setAttribute('aria-expanded','true'); categoryToggle.querySelector('.arrow').textContent='↑'; } const matches = productCards.filter(card => normalizeText(`${card.textContent} ${card.querySelector('img').alt}`).includes(query)); productCards.forEach(card => { card.hidden = Boolean(query) &&!matches.includes(card); }); searchStatus.textContent = raw? (matches.length? `${matches.length} producto(s) encontrado(s).` : 'No encontramos ese producto.') : ''; if (shouldScroll && matches.length) requestAnimationFrame(()=>matches[0].scrollIntoView({ behavior:'smooth', block:'center' })); };
-let searchTimer; productSearch.addEventListener('input', () => { searchProducts(); clearTimeout(searchTimer); searchTimer=setTimeout(()=>searchProducts(true),350); });
+const productCards = Array.from(document.querySelectorAll('.product, div[style*="background:white"]'));
+
+const searchProducts = (shouldScroll = false) => { 
+  const raw = productSearch.value.trim(); 
+  const query = normalizeText(raw); 
+  if (query) { 
+    products.hidden = false; 
+    categoryToggle.setAttribute('aria-expanded','true'); 
+    const arrow = categoryToggle.querySelector('.arrow');
+    if(arrow) arrow.textContent='↑'; 
+  } 
+  const matches = productCards.filter(card => normalizeText(`${card.textContent} ${card.querySelector('img')?.alt||''}`).includes(query)); 
+  productCards.forEach(card => { card.hidden = Boolean(query) && !matches.includes(card); }); 
+  searchStatus.textContent = raw ? (matches.length ? `${matches.length} producto(s) encontrado(s).` : 'No encontramos ese producto.') : ''; 
+  if (shouldScroll && matches.length) requestAnimationFrame(()=>matches[0].scrollIntoView({ behavior:'smooth', block:'center' })); 
+};
+
+let searchTimer; 
+productSearch.addEventListener('input', () => { searchProducts(); clearTimeout(searchTimer); searchTimer=setTimeout(()=>searchProducts(true),350); });
 productSearch.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); searchProducts(true);} });
+
 const cartToggle = document.querySelector('#cart-toggle');
 const cartPanel = document.querySelector('#cart-panel');
 const cartCount = document.querySelector('#cart-count');
 const cartItems = document.querySelector('#cart-items');
 const cartEmpty = document.querySelector('#cart-empty');
 let cart = JSON.parse(localStorage.getItem('loreloreescrap-cart')||'[]');
-const renderCart = () => { cartCount.textContent = cart.length; cartItems.innerHTML = ''; cartEmpty.hidden = cart.length>0; cart.forEach((item,index)=>{ const li=document.createElement('li'); li.style.display='flex'; li.style.justifyContent='space-between'; li.style.alignItems='center'; li.style.gap='10px'; li.style.marginBottom='8px'; li.style.fontSize='.85rem'; const text=document.createElement('span'); text.textContent=`${item.name} — ${item.price}`; const delBtn=document.createElement('button'); delBtn.type='button'; delBtn.textContent='✕'; delBtn.style.border='1px solid #c91591'; delBtn.style.background='#fff'; delBtn.style.color='#c91591'; delBtn.style.borderRadius='50%'; delBtn.style.width='24px'; delBtn.style.height='24px'; delBtn.style.cursor='pointer'; delBtn.style.fontWeight='700'; delBtn.addEventListener('click',()=>{ cart.splice(index,1); renderCart(); }); li.appendChild(text); li.appendChild(delBtn); cartItems.appendChild(li); }); localStorage.setItem('loreloreescrap-cart', JSON.stringify(cart)); };
+
+const renderCart = () => { 
+  cartCount.textContent = cart.length; 
+  cartItems.innerHTML = ''; 
+  cartEmpty.hidden = cart.length>0; 
+  cart.forEach((item,index)=>{ 
+    const li=document.createElement('li'); 
+    li.style.display='flex'; 
+    li.style.justifyContent='space-between'; 
+    li.style.alignItems='center'; 
+    li.style.gap='10px'; 
+    li.style.marginBottom='8px'; 
+    li.style.fontSize='.85rem'; 
+    const text=document.createElement('span'); 
+    text.textContent=`${item.name} — ${item.price}`; 
+    const delBtn=document.createElement('button'); 
+    delBtn.type='button'; 
+    delBtn.textContent='✕'; 
+    delBtn.style.border='1px solid #c91591'; 
+    delBtn.style.background='#fff'; 
+    delBtn.style.color='#c91591'; 
+    delBtn.style.borderRadius='50%'; 
+    delBtn.style.width='24px'; 
+    delBtn.style.height='24px'; 
+    delBtn.style.cursor='pointer'; 
+    delBtn.style.fontWeight='700'; 
+    delBtn.addEventListener('click',()=>{ cart.splice(index,1); renderCart(); }); 
+    li.appendChild(text); 
+    li.appendChild(delBtn); 
+    cartItems.appendChild(li); 
+  }); 
+  localStorage.setItem('loreloreescrap-cart', JSON.stringify(cart)); 
+};
+
+// FIX - ya no crea botones dobles, solo escucha los que ya existen
+document.querySelectorAll('.add-cart').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const card = btn.closest('.product, div[style*="background:white"]');
+    const name = card.querySelector('.lore-title')?.textContent?.trim() || 'Producto';
+    const price = card.querySelector('.lore-price')?.textContent?.trim() || '';
+    cart.push({name, price});
+    renderCart();
+    cartPanel.hidden=false;
+    cartToggle.setAttribute('aria-expanded','true');
+  });
+});
+
+cartToggle.addEventListener('click',()=>{ 
+  const isOpen=cartToggle.getAttribute('aria-expanded')==='true'; 
+  cartToggle.setAttribute('aria-expanded',String(!isOpen)); 
+  cartPanel.hidden=isOpen; 
+});
+
+document.querySelector('#checkout-whatsapp').addEventListener('click',()=>{ 
+  if(cart.length===0){ alert('Tu carrito está vacío'); return; } 
+  let mensaje='Hola LoreLoreeScrap! 👋 Quiero comprar:%0A%0A'; 
+  cart.forEach((item,i)=>{ mensaje+=`${i+1}. ${item.name} - ${item.price}%0A`; }); 
+  mensaje+=`%0ATotal productos: ${cart.length}`; 
+  window.open(`https://wa.me/573227689946?text=${mensaje}`,'_blank'); 
+});
+
+renderCart();
   cartToggle.addEventListener('click',()=>{ const isOpen=cartToggle.getAttribute('aria-expanded')==='true'; cartToggle.setAttribute('aria-expanded',String(!isOpen)); cartPanel.hidden=isOpen; });
 document.querySelector('#checkout-whatsapp').addEventListener('click',()=>{ if(cart.length===0){ alert('Tu carrito está vacío'); return; } let mensaje='Hola LoreLoreeScrap! 👋 Quiero comprar:%0A%0A'; cart.forEach((item,i)=>{ mensaje+=`${i+1}. ${item.name} - ${item.price}%0A`; }); mensaje+=`%0ATotal productos: ${cart.length}`; window.open(`https://wa.me/573227689946?text=${mensaje}`,'_blank'); });
 renderCart();
