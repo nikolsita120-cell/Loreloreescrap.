@@ -53,8 +53,14 @@
  .cart-button { border:1px solid var(--pink); border-radius:999px; padding:8px 12px; color:var(--ink); background:var(--card); font:inherit; cursor:pointer; white-space:nowrap; font-size:.85rem; }
  .cart-panel { position:absolute; left:0; right:auto; top:60px; width:280px; max-width:90vw; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:12px; box-shadow:0 12px 28px rgba(0,0,0,.3); z-index:99; transform-origin:top left; }
  .cart-items { list-style:none; padding:0; margin:0; max-height:220px; overflow:auto; font-size:.85rem; }
- .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
- .category-card:hover { transform:translateY(-4px); border-color:var(--pink); }
+.grid { display:grid; grid-template-columns:1fr; gap:18px; }
+#papeleria-toggle { 
+  width:100%; 
+  max-width:100%; 
+  padding:28px 32px; 
+  display:block;
+}
+.category-card:hover { transform:translateY(-4px); border-color:var(--pink); }
  .category-card h3 { font-size:1.8rem; margin-top:8px; }
  .category-card p { color:var(--muted); margin:0; }
  .product-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-top:24px; align-items:start; }
