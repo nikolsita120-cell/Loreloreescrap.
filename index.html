@@ -174,20 +174,16 @@
 #catalogo .heading p {
   color: #b89bcc !important;
 }
-section#contacto .heading p,
-#contacto .heading p,
-#contacto p {
+#contacto p.intro {
   color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  opacity: 1 !important;
-  filter: none !important;
+  opacity: .9 !important;
+  transition: all .35s ease;
 }
-section#contacto .heading p:hover,
-#contacto .heading p:hover,
-#contacto p:hover {
-  color: #ff77d1 !important;
-  -webkit-text-fill-color: #ff77d1 !important;
-  text-shadow: 0 0 12px #ff2fa8, 0 0 24px #ff2fa8aa !important;
+#contacto p.intro:hover {
+  color: #ff8ad4 !important;
+  text-shadow: 0 0 10px #ff2fa8, 0 0 22px #ff2fa8aa, 0 0 40px #ff2fa866;
+  opacity: 1 !important;
+  transform: translateY(-1px);
 }
   </style>
 </head>
