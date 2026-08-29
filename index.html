@@ -85,6 +85,23 @@
   .fall-item { position:absolute; top:-150px; width:130px; animation:fall linear infinite; filter:drop-shadow(0 8px 14px #00000044); opacity:1; }
    @keyframes fall { 0% { transform:translateY(-150px) rotate(0deg) translateX(0); opacity:0; } 10% { opacity:1; } 90% { opacity:1; } 100% { transform:translateY(1000px) rotate(720deg) translateX(60px); opacity:0; } }
    @media(max-width:720px) {.hero-grid,.contact-grid,.services-layout { grid-template-columns:1fr; }.logo { width:min(420px,100%); }.grid,.product-grid { grid-template-columns:1fr; }.product { grid-template-columns:1fr; }.fall-item { width:80px!important; } nav { flex-wrap:wrap; }.links { width:100%; } }
+  .funko-side {
+  width: 260px;
+  justify-self: end;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px #6b27a855);
+  transition: transform .4s ease, filter .4s ease;
+  cursor: pointer;
+  animation: funko-float 3.5s ease-in-out infinite;
+}
+.funko-side:hover {
+  transform: scale(1.12) rotate(-3deg);
+  filter: drop-shadow(0 20px 30px #c91591aa) brightness(1.1);
+}
+@keyframes funko-float {
+  0%,100% { transform: translateY(0) }
+  50% { transform: translateY(-10px) }
+}
   </style>
 </head>
 <body>
@@ -101,8 +118,8 @@
   <img src="mug.png" class="fall-item" style="left:90%; animation-duration:10s; animation-delay:2s; width:145px;">
   <img src="esfero.png" class="fall-item" style="left:94%; animation-duration:7s; animation-delay:1.2s; width:95px;">
 </div>
-<div class="wrap"><div class="heading"><div class="eyebrow">Lo hacemos especial</div><h2>Servicios para cada idea</h2><p class="intro">Cuéntanos qué imaginas y te ayudamos a convertirlo en un detalle hecho a tu medida.</p></div><div class="services-layout"><div class="video-box"><iframe class="tiktok-player" src="https://www.tiktok.com/player/v1/7673717573598465301" title="Video de LoreLoreeScrap en TikTok" loading="lazy" allow="fullscreen"></iframe><a class="video-link" href="https://www.tiktok.com/@agendas_loreloreescrap/video/7673717573598465301" target="_blank" rel="noopener noreferrer">Ver video completo en TikTok ↗</a></div><div class="services-list"><img class="services-image" src="logo-loreloreescrap.png" alt="Logo de LoreLoreeScrap"><article class="card"><h3>Personalización</h3><p>Diseños únicos para agendas, libretas, regalos y productos especiales.</p></article><article class="card"><h3>Sublimación</h3><p>Colores vibrantes en mugs, termos, caramañolas, vasos y mucho más.</p></article><article class="card"><h3>Estampados</h3><p>Haz realidad tu diseño en diferentes superficies y formatos.</p></article></div></div></div></section>
-<section id="catalogo"><div class="wrap"><div class="heading"><div class="eyebrow">Nuestro catálogo</div><h2>Elige una sección</h2><p class="intro">Entra a una categoría para descubrir todos los productos disponibles.</p></div>
+<div class="wrap" style="display:grid; grid-template-columns:1.2fr 0.8fr; align-items:center; gap:20px; position:relative;"><div class="heading"><div class="eyebrow">Nuestro catálogo</div><h2>Elige una sección</h2><p class="intro">Entra a una categoría para descubrir todos los productos disponibles.</p></div><img src="funko.png" class="funko-side" alt="funko">
+  <section id="catalogo"><div class="wrap"><div class="heading"><div class="eyebrow">Nuestro catálogo</div><h2>Elige una sección</h2><p class="intro">Entra a una categoría para descubrir todos los productos disponibles.</p></div>
 <button class="card category-card" id="papeleria-toggle" type="button" aria-expanded="false" aria-controls="papeleria-products"><span class="eyebrow">Sección 01</span><h3>Agendas y papelería</h3><p>Agendas, libretas, cuadernos y detalles personalizados para cada ocasión.</p><span class="arrow" aria-hidden="true">↓</span></button>
 <div id="papeleria-products" hidden>
 <h3 class="catalog-subtitle">AGENDAS</h3>
