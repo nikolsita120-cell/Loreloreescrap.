@@ -169,6 +169,66 @@
       categoryToggle.querySelector('.arrow').textContent = isOpen ? '↓' : '↑';
       if (!isOpen) products.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+    const productSearch = document.querySelector('#product-search');
+    const searchStatus = document.querySelector('#search-status');
+    const productCards = Array.from(document.querySelectorAll('.product'));
+    const searchProducts = (shouldScroll = false) => {
+      const query = productSearch.value.trim().toLocaleLowerCase();
+      if (query) {
+        products.hidden = false;
+        categoryToggle.setAttribute('aria-expanded', 'true');
+      }
+      const matches = productCards.filter(card => card.textContent.toLocaleLowerCase().includes(query));
+      productCards.forEach(card => { card.hidden = Boolean(query) && !matches.includes(card); });
+      searchStatus.textContent = query ? (matches.length ? `${matches.length} producto(s) encontrado(s).` : 'No encontramos ese producto.') : '';
+      if (shouldScroll && matches.length) matches[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+    productSearch.addEventListener('input', () => searchProducts());
+    productSearch.addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        searchProducts(true);
+      }
+    });
+    const cartToggle = document.querySelector('#cart-toggle');
+    const cartPanel = document.querySelector('#cart-panel');
+    const cartCount = document.querySelector('#cart-count');
+    const cartItems = document.querySelector('#cart-items');
+    const cartEmpty = document.querySelector('#cart-empty');
+    let cart = JSON.parse(localStorage.getItem('loreloreescrap-cart') || '[]');
+    const renderCart = () => {
+      cartCount.textContent = cart.length;
+      cartItems.innerHTML = '';
+      cartEmpty.hidden = cart.length > 0;
+      cart.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${item.name} — ${item.price}`;
+        cartItems.appendChild(listItem);
+      });
+      localStorage.setItem('loreloreescrap-cart', JSON.stringify(cart));
+    };
+    productCards.forEach(card => {
+      const button = document.createElement('button');
+      button.className = 'add-cart';
+      button.type = 'button';
+      button.textContent = 'Agregar al carrito';
+      button.addEventListener('click', () => {
+        cart.push({
+          name: card.querySelector('h3').textContent,
+          price: card.querySelector('.price').textContent
+        });
+        renderCart();
+        cartPanel.hidden = false;
+        cartToggle.setAttribute('aria-expanded', 'true');
+      });
+      card.querySelector('.product-body').appendChild(button);
+    });
+    cartToggle.addEventListener('click', () => {
+      const isOpen = cartToggle.getAttribute('aria-expanded') === 'true';
+      cartToggle.setAttribute('aria-expanded', String(!isOpen));
+      cartPanel.hidden = isOpen;
+    });
+    renderCart();
   </script>
 </body>
 </html>
