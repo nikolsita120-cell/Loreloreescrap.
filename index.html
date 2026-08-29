@@ -63,11 +63,9 @@
   .card h3 { color:#ff77d1; }.product { overflow:hidden;padding:0; display:grid; grid-template-columns:150px 1fr; align-items:center; }.product img { width:100%;height:190px;object-fit:contain;display:block;background:#120a19;padding:10px; }.product-body { padding:18px; }.product-body h3 { font-size:1.05rem; margin-bottom:8px; }.product-body p,.product-list { font-size:.78rem; }.product-list { margin:10px 0 14px; }
   .price { color:#ff77d1;font-size:1.2rem;font-weight:900; } ul { color:var(--muted);padding-left:20px; }
   .contact { background:linear-gradient(135deg,#241034,#170c23); color:#fff; }
-   /* FIX HORARIOS */
-/* FIX HORARIOS - CON ESPACIO */
-#contacto .card { background:#fffaff!important; }
-#contacto .card h3 { color:#c91591!important; }
-#contacto .card p, #contacto .card a { color:#24182d!important; }
+  #contacto .card { background:#fffaff!important; }
+  #contacto .card h3 { color:#c91591!important; }
+  #contacto .card p, #contacto .card a { color:#24182d!important; }
   .contact-grid { display:grid;grid-template-columns:1fr 1fr;gap:20px; }.contact a { color:#ff77d1;text-decoration:none; }
    footer { border-top:1px solid var(--line);padding:28px 0;color:var(--muted); }
   .video-box { max-width:620px; margin-top:26px; padding:18px; border:1px solid var(--line); border-radius:20px; background:var(--card); box-shadow:0 10px 24px #663b8c1c; }
@@ -80,13 +78,12 @@
   .services-list { display:grid; gap:16px; }
   .services-image { width:100%; max-height:150px; object-fit:contain; display:block; background:transparent; }
   .add-cart{margin-top:10px;border:1px solid var(--pink);background:#fff;color:var(--pink);border-radius:999px;padding:7px 14px;font:inherit;font-weight:800;cursor:pointer}
-   /* EFECTO CAIDA GRANDE */
   .falling-container { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:5; display:block; }
   .fall-item { position:absolute; top:-150px; width:130px; animation:fall linear infinite; filter:drop-shadow(0 8px 14px #00000044); opacity:1; }
    @keyframes fall { 0% { transform:translateY(-150px) rotate(0deg) translateX(0); opacity:0; } 10% { opacity:1; } 90% { opacity:1; } 100% { transform:translateY(1000px) rotate(720deg) translateX(60px); opacity:0; } }
    @media(max-width:720px) {.hero-grid,.contact-grid,.services-layout { grid-template-columns:1fr; }.logo { width:min(420px,100%); }.grid,.product-grid { grid-template-columns:1fr; }.product { grid-template-columns:1fr; }.fall-item { width:80px!important; } nav { flex-wrap:wrap; }.links { width:100%; } }
   .funko-side {
-  width: 260px;
+  width: 190px;
   justify-self: end;
   object-fit: contain;
   filter: drop-shadow(0 12px 20px #6b27a855);
@@ -118,9 +115,9 @@
   <img src="mug.png" class="fall-item" style="left:90%; animation-duration:10s; animation-delay:2s; width:145px;">
   <img src="esfero.png" class="fall-item" style="left:94%; animation-duration:7s; animation-delay:1.2s; width:95px;">
 </div>
-</div></section><section id="catalogo"><div class="wrap" style="display:grid; grid-template-columns:1fr 190px; align-items:center; gap:20px;">
-<div class="heading"><div class="eyebrow">Nuestro catálogo</div><h2>Elige una sección</h2><p class="intro">ENTRA A UNA CATEGORÍA PARA DESCUBRIR TODOS LOS PRODUCTOS DISPONIBLES.</p></div><img src="funko.png" class="funko-side" alt="funko"></div>
-  
+</section>
+<section id="catalogo"><div class="wrap" style="display:grid; grid-template-columns:1fr 190px; align-items:center; gap:20px;"><div class="heading"><div class="eyebrow">Nuestro catálogo</div><h2>Elige una sección</h2><p class="intro">ENTRA A UNA CATEGORÍA PARA DESCUBRIR TODOS LOS PRODUCTOS DISPONIBLES.</p></div><img src="funko.png" class="funko-side" alt="funko"></div>
+<div class="wrap" style="margin-top:20px">
 <button class="card category-card" id="papeleria-toggle" type="button" aria-expanded="false" aria-controls="papeleria-products"><span class="eyebrow">Sección 01</span><h3>Agendas y papelería</h3><p>Agendas, libretas, cuadernos y detalles personalizados para cada ocasión.</p><span class="arrow" aria-hidden="true">↓</span></button>
 <div id="papeleria-products" hidden>
 <h3 class="catalog-subtitle">AGENDAS</h3>
@@ -140,7 +137,8 @@
 <article class="card product"><img src="CHAN.png" alt="Libreta grande personalizada"><div class="product-body"><div class="eyebrow">Libreta grande</div><h3>Libreta personalizada</h3><p>14.5 cm × 22.5 cm</p><ul class="product-list"><li>80 hojas: blancas, rayadas o cuadriculadas</li><li>Efecto “Azúcar, Vidrio roto, 3D, Tornasol”</li></ul><div class="price">$27.000 COP</div></div></article>
 </div>
 </div>
-</div></section>
+</div>
+</section>
 <section class="contact" id="contacto"><div class="wrap contact-grid"><div><div class="eyebrow">Hablemos</div><h2>¿Tienes una idea?</h2><p class="intro">Escríbenos para cotizar tu producto personalizado. Atendemos únicamente en Bogotá.</p><a class="button primary" href="https://wa.me/573227689946" target="_blank" rel="noopener">WhatsApp: 322 768 9946</a></div><div class="card"><h3>Horarios de atención</h3><p>Lunes a viernes: 8:00 a. m. – 5:00 p. m.<br>Sábados: 8:00 a. m. – 2:00 p. m.<br>Domingos: sin servicio</p><p><a href="mailto:loreloreescrap@gmail.com">loreloreescrap@gmail.com</a></p><p><a href="https://www.instagram.com/loreloreescrap" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/loree.loree.9883" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.tiktok.com/@agendas_loreloreescrap" target="_blank" rel="noopener">TikTok</a></p></div></div></section>
 </main>
 <a class="whatsapp-float" href="https://wa.me/573227689946?text=Hola%20LoreLoreeScrap%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer"><img src="ayuda2.0.png" alt="WhatsApp"></a>
