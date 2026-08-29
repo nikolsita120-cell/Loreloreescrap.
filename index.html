@@ -178,7 +178,7 @@
         products.hidden = false;
         categoryToggle.setAttribute('aria-expanded', 'true');
       }
-      const matches = productCards.filter(card => card.textContent.toLocaleLowerCase().includes(query));
+      const matches = productCards.filter(card => normalizeText(`${card.textContent} ${card.querySelector('img').alt}`).includes(query));
       productCards.forEach(card => { card.hidden = Boolean(query) && !matches.includes(card); });
       searchStatus.textContent = query ? (matches.length ? `${matches.length} producto(s) encontrado(s).` : 'No encontramos ese producto.') : '';
       if (shouldScroll && matches.length) matches[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
