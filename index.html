@@ -47,8 +47,36 @@
   .hero p,.intro { color:var(--muted);font-size:1.1rem;max-width:650px; }.buttons { display:flex;gap:12px;flex-wrap:wrap;margin-top:26px; }
   .button { display:inline-block;text-decoration:none;border:1px solid var(--pink);border-radius:999px;padding:10px 18px; }.primary { background:var(--pink);color:#fff;font-weight:800; }
   .button { transition:transform.2s ease, box-shadow.2s ease; }.button:hover { transform:translateY(-3px); box-shadow:0 8px 18px #c9159144; }.button:active { transform:translateY(1px) scale(.97); }
-    section { padding:68px 0; position:relative; }.heading { margin-bottom:26px; }.heading p { color:var(--muted);margin:0; }
-.catalog-search { width:min(330px,100%); margin:0; border:1px solid var(--line); border-radius:999px; padding:8px 14px; font:inherit; }
+    section { padding:68px 0; position:relative; }
+.heading { margin-bottom:32px; text-align:center; }
+.heading .eyebrow {
+  display:inline-block;
+  background: linear-gradient(90deg, #ff77d1, #a855f7);
+  color:#fff;
+  padding:6px 18px;
+  border-radius:999px;
+  font-size:.7rem;
+  letter-spacing:.18em;
+  box-shadow:0 6px 18px #c9159144;
+  margin-bottom:10px;
+}
+.heading h2 {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: var(--ink);
+  text-shadow: 0 2px 0 #fff, 0 0 20px #ff77d133;
+}
+.heading h2::after {
+  content:"";
+  display:block;
+  width:70px;
+  height:4px;
+  background: linear-gradient(90deg, #ff77d1, #a855f7);
+  border-radius:999px;
+  margin:12px auto 0;
+}
+.heading p { color:var(--muted); margin:10px auto 0; max-width:600px; }.catalog-search { width:min(330px,100%); margin:0; border:1px solid var(--line); border-radius:999px; padding:8px 14px; font:inherit; }
  .cart-wrap { position:relative; }
  .cart-button { border:1px solid var(--pink); border-radius:999px; padding:8px 12px; color:var(--ink); background:var(--card); font:inherit; cursor:pointer; white-space:nowrap; font-size:.85rem; }
  .cart-panel { position:absolute; left:0; right:auto; top:60px; width:280px; max-width:90vw; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:12px; box-shadow:0 12px 28px rgba(0,0,0,.3); z-index:99; transform-origin:top left; }
