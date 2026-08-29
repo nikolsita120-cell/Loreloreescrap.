@@ -103,6 +103,20 @@
     50% { transform: translateY(-10px) }
   }
    @media(max-width:720px) {.hero-grid,.contact-grid,.services-layout { grid-template-columns:1fr; }.logo { width:min(420px,100%); }.grid,.product-grid { grid-template-columns:1fr; }.product { grid-template-columns:1fr; }.fall-item { width:80px!important; } nav { flex-wrap:wrap; }.links { width:100%; } .funko-side{width:130px} }
+  /* BRILLO MORADO INTERACTIVO */
+.services-image.logo-brillo {
+  filter: drop-shadow(0 0 15px #ff77d1) drop-shadow(0 0 30px #6b27a8);
+  transition: transform .3s ease, filter .3s ease;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+.services-image.logo-brillo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 30px #ff77d1) drop-shadow(0 0 60px #6b27a8) drop-shadow(0 0 90px #a855f7);
+}
+@keyframes pulse-glow {
+  0%,100% { filter: drop-shadow(0 0 15px #ff77d1) drop-shadow(0 0 30px #6b27a8); }
+  50% { filter: drop-shadow(0 0 25px #ff77d1) drop-shadow(0 0 50px #a855f7); }
+}
   </style>
 </head>
 <body>
@@ -119,7 +133,7 @@
   <img src="mug.png" class="fall-item" style="left:90%; animation-duration:10s; animation-delay:2s; width:145px;">
   <img src="esfero.png" class="fall-item" style="left:94%; animation-duration:7s; animation-delay:1.2s; width:95px;">
 </div>
-<div class="wrap"><div class="heading"><div class="eyebrow">Lo hacemos especial</div><h2>Servicios para cada idea</h2><p class="intro">Cuéntanos qué imaginas y te ayudamos a convertirlo en un detalle hecho a tu medida.</p></div><div class="services-layout"><div class="video-box"><iframe class="tiktok-player" src="https://www.tiktok.com/player/v1/7673717573598465301" title="Video de LoreLoreeScrap en TikTok" loading="lazy" allow="fullscreen"></iframe><a class="video-link" href="https://www.tiktok.com/@agendas_loreloreescrap/video/7673717573598465301" target="_blank" rel="noopener noreferrer">Ver video completo en TikTok ↗</a></div><div class="services-list"><img class="services-image" src="logo_transparente.png" alt="Logo de transparente"><article class="card"><h3>Personalización</h3><p>Diseños únicos para agendas, libretas, regalos y productos especiales.</p></article><article class="card"><h3>Sublimación</h3><p>Colores vibrantes en mugs, termos, caramañolas, vasos y mucho más.</p></article><article class="card"><h3>Estampados</h3><p>Haz realidad tu diseño en diferentes superficies y formatos.</p></article></div></div></div></section>
+<div class="wrap"><div class="heading"><div class="eyebrow">Lo hacemos especial</div><h2>Servicios para cada idea</h2><p class="intro">Cuéntanos qué imaginas y te ayudamos a convertirlo en un detalle hecho a tu medida.</p></div><div class="services-layout"><div class="video-box"><iframe class="tiktok-player" src="https://www.tiktok.com/player/v1/7673717573598465301" title="Video de LoreLoreeScrap en TikTok" loading="lazy" allow="fullscreen"></iframe><a class="video-link" href="https://www.tiktok.com/@agendas_loreloreescrap/video/7673717573598465301" target="_blank" rel="noopener noreferrer">Ver video completo en TikTok ↗</a></div><div class="services-list"><img class="services-image logo-brillo" src="logo_transparente.png" alt="Logo LoreLoreeScrap"><article class="card"><h3>Personalización</h3><p>Diseños únicos para agendas, libretas, regalos y productos especiales.</p></article><article class="card"><h3>Sublimación</h3><p>Colores vibrantes en mugs, termos, caramañolas, vasos y mucho más.</p></article><article class="card"><h3>Estampados</h3><p>Haz realidad tu diseño en diferentes superficies y formatos.</p></article></div></div></div></section>
 <section id="catalogo">
 <div class="wrap" style="display:grid; grid-template-columns:1fr 190px; align-items:center; gap:20px;">
   <div class="heading"><div class="eyebrow">Nuestro catálogo</div><h2>Elige una sección</h2><p class="intro">Entra a una categoría para descubrir todos los productos disponibles.</p></div>
